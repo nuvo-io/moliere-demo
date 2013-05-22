@@ -1,0 +1,31 @@
+module dds {
+    module demo {
+	  /**
+	     The Oximetry Parameters are split into two topics to take
+	     into account the different update rates.
+	     
+	     Since the pleth parameter is updated with a ~10ms period,
+	     it is sent on its own topic to avoid sending over and
+	     over data that changes every second.
+	  **/
+	  struct Oximetry {
+	    string deviceId;
+	    long deviceType;
+	    long spO2;
+	    long bpm;
+	    long rr;
+	    long pleth;
+	  };
+#pragma keylist Oximetry deviceId
+
+	  /**
+	   * High frequency pleth data used for graphing and analysis.
+	   */
+	  struct Pleth {
+	    string deviceId;
+	    float pleth;
+	  };
+#pragma keylist Pleth deviceId
+	  
+    };
+};
