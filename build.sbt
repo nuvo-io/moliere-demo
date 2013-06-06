@@ -6,9 +6,9 @@ name		:= "moliere-demo"
 
 version		:= "0.0.1"
 
-organization 	:= "io.nuvola"
+organization 	:= "io.nuvo"
 
-homepage :=  Some(new java.net.URL("http://blog.nuvola.io"))
+homepage :=  Some(new java.net.URL("http://nuvo.io"))
 
 scalaVersion 	:= "2.10.1"
 
@@ -20,12 +20,7 @@ libraryDependencies += "io.nuvo" % "moliere_2.10" % "0.0.1-SNAPSHOT"
 
 libraryDependencies += "org.scalatest" % "scalatest_2.10" % "1.9.1" % "test"
 
-libraryDependencies += "org.opensplice.mobile" % "mobile-dds" % "1.0.1-SNAPSHOT"
-
-libraryDependencies += "org.opensplice.mobile" % "mobile-dds-core" % "1.0.1-SNAPSHOT"
-
-libraryDependencies += "org.opensplice.mobile" % "mobile-ddsi" % "1.0.1-SNAPSHOT"
-
+libraryDependencies += "org.opensplice.mobile" % "ospl-mobile" % "1.0.1-SNAPSHOT"
 
 autoCompilerPlugins := true
 
@@ -38,8 +33,4 @@ scalacOptions += "-optimise"
 scalacOptions += "-feature"
 
 scalacOptions += "-language:postfixOps"
-
-
-
-
 

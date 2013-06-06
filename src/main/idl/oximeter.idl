@@ -26,6 +26,14 @@ module dds {
 	    float pleth;
 	  };
 #pragma keylist Pleth deviceId
-	  
+
+   /**
+       * Topic used to advertise the presence of a device.
+       */
+  	  struct DeviceInfo {
+   	    string deviceId;
+   	    string description;
+   	   };
+    #pragma keylist DeviceInfo deviceId	  
     };
 };
