@@ -36,3 +36,18 @@ scalacOptions += "-feature"
 
 scalacOptions += "-language:postfixOps"
 
+proguardSettings
+
+ProguardKeys.options in Proguard ++= Seq(
+		     "-dontnote", 
+		     "-dontwarn", 
+		     "-ignorewarnings",
+		     "-optimizationpasses 5",
+		     "-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*,!code/allocation/variable",
+		     "-dontobfuscate",
+		     "-dontusemixedcaseclassnames",
+		     "-dontskipnonpubliclibraryclasses",
+		     "-dontpreverify",
+		     "-keeppackagenames **")
+
+ProguardKeys.options in Proguard += ProguardOptions.keepMain("dds.demo.oximeter.Oximeter")
