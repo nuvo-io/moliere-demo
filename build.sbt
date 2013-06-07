@@ -10,6 +10,8 @@ organization 	:= "io.nuvo"
 
 homepage :=  Some(new java.net.URL("http://nuvo.io"))
 
+sbtVersion := "0.12.3"
+
 scalaVersion 	:= "2.10.1"
 
 resolvers += "Local Maven Repo" at "file://"+Path.userHome.absolutePath+"/.m2/repository"
