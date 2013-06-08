@@ -38,16 +38,23 @@ scalacOptions += "-language:postfixOps"
 
 proguardSettings
 
-ProguardKeys.options in Proguard ++= Seq(
-		     "-dontnote", 
-		     "-dontwarn", 
-		     "-ignorewarnings",
-		     "-optimizationpasses 5",
-		     "-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*,!code/allocation/variable",
-		     "-dontobfuscate",
-		     "-dontusemixedcaseclassnames",
-		     "-dontskipnonpubliclibraryclasses",
-		     "-dontpreverify",
-		     "-keeppackagenames **")
+ProguardKeys.options in Proguard += """
+-dontnote
+-dontwarn
+-ignorewarnings
+-dontobfuscate
+-dontusemixedcaseclassnames
+-dontskipnonpubliclibraryclasses
+-keeppackagenames **
+-optimizationpasses 3
+-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*,!code/allocation/variable
+-keep public class org.opensplice.mobile.core.ServiceEnvironmentImpl
+-keep public class org.slf4j.ILoggerFactor {
+      *;
+}
+-keep  class dds.demo.*Helper {  
+       *; 
+}
+"""
 
 ProguardKeys.options in Proguard += ProguardOptions.keepMain("dds.demo.oximeter.Oximeter")
