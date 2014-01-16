@@ -34,6 +34,14 @@ object MidPointTriangle {
       s => new ShapeType(s.color, (s.x + c.x)/2, (s.y + c.y)/2, (s.shapesize + c.shapesize)/4)
     })
 
-    triangles.subscribe(tdw.write(_))
+    // The same can be achieved with for-comprehension as shown below:
+
+//    val cm = for {
+//      c <- triangles;
+//      s <- squares.dropWhile(_.color != c.color).take(1)
+//    } yield new ShapeType(s.color, (s.x + c.x)/2, (s.y + c.y)/2, (s.shapesize + c.shapesize)/4)
+
+
+    // triangles.subscribe(tdw.write(_))
   }
 }
