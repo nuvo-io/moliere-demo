@@ -4,25 +4,23 @@ assemblySettings
 
 name		:= "moliere-demo"
 
-version		:= "0.0.1"
+version		:= "0.1.1-SNAPSHOT"
 
 organization 	:= "io.nuvo"
 
 homepage :=  Some(new java.net.URL("http://nuvo.io"))
 
-sbtVersion := "0.12.3"
+scalaVersion 	:= "2.10.3"
 
-scalaVersion 	:= "2.10.1"
-
-resolvers += "Local Maven Repo" at "file://"+Path.userHome.absolutePath+"/.m2/repository"
+resolvers += "Local Maven Repo" at "file://"+Path.userHome.absolutePath+"/.ivy2/local"
 
 resolvers += "nuvo.io maven repo" at "http://nuvo-io.github.com/mvn-repo/snapshots"
 
-libraryDependencies += "io.nuvo" % "moliere_2.10" % "0.0.1-SNAPSHOT"
+libraryDependencies += "com.netflix.rxjava" % "rxjava-scala" % "0.16.0"
+
+libraryDependencies += "io.nuvo" % "moliere_2.10" % "0.1.3-SNAPSHOT"
 
 libraryDependencies += "org.scalatest" % "scalatest_2.10" % "1.9.1" % "test"
-
-libraryDependencies += "org.opensplice.mobile" % "ospl-mobile" % "1.0.1-SNAPSHOT"
 
 autoCompilerPlugins := true
 
