@@ -46,6 +46,56 @@ object ShapeAnalytics {
       new ShapeType(as.color, as.x/n, as.y/n, as.shapesize/n)
     })
     avgShapePos.subscribe(tdw.write(_))
-  
+    // cobs.takeWhile()
+    // cobs.subscribe(c => {sobs.dropWhile(_.color != c.color).take(1).subscribe(s => tdw.write(new ShapeType(s.color, (s.x + c.x)/2, (s.y + c.y)/2, (s.shapesize + c.shapesize)/4)))})
+
+//
+//    val ooc: Observable[Observable[ShapeType]] = gcircles.map(_._2)
+//    val shapeNumber = ooc.length.subscribe(n => {
+//      println("--------------")
+//      ooc.take(n).flatten.subscribe(s => println("(" + s.color + ", " + s.x + ", " + s.y) )
+//    })
+
+    /*
+    val xs: Observable[Int] = Observable.from(List(1,2,3,4,5,6,7,8,9,10))
+    val yss: Observable[Observable[Int]] =
+      xs.map(x => Observable.interval(x seconds).map(_ => x).take(2))
+
+    val xz: Observable[Int] = yss.flatten
+    xz.subscribe(x => println(x))
+
+    val ps: Observable[(Int, Observable[Int])] = xs.groupBy(_ % 2)
+    ps.subscribe(x => x._2.subscribe(y => println("Stream: " + x._1 + " value = " + y)))
+*/
+
+
+    //ps.subscribe(ys => for (y <- ys._2) y)
+    /*
+    gcircles.subscribe(o => o._2.subscribe(s => println(o._1 + "(" + s.x + ", " + s.y + ")")))
+    gcircles.map(s => s._2).buffer(1,1).subscribe(s => {
+
+      def merge: Seq[Observable[ShapeType]] => Observable[ShapeType] = (os: Seq[Observable[ShapeType]]) => {
+        def accMerge(as: Observable[ShapeType], os: Seq[Observable[ShapeType]]): Observable[ShapeType] = {
+        os match {
+          case x::List() => as.merge(x)
+          case x::xs => accMerge(as.merge(x), xs)
+        }
+      }
+      accMerge(os.head, os.tail)
+      }
+
+      val ms = merge(s)
+      ms.subscribe(s => println(s.color + " - " + s.x + " - " + s.y))
+//      // val fs: Observable[ShapeType] = s
+//      val fs: Seq[ShapeType] = s.flatten[ShapeType]
+//      // val len = fs.length
+//      val acc = fs.foldLeft((0, 0))((a, s) => (a._1 + s.x, a._2 + s.y))
+//      // val (ax, ay) = (acc._1/len, acc._2/len)
+//      val (ax, ay) = (acc._1, acc._2)
+//      println(s"Average Shape Position = ($ax, $ay)")
+    })
+    // gcircles.subscribe(s => s._2.sub)
+    // gcircles.buffer(1,1).flatMap(f => f.foldLeft(f.head._2)((a,b) => a.merge(b._2))).foldLeft((0,0))((a, s) => (a._1 + s.x, a._2 + s.y)).subscribe(s => println(s))
+    */
   }
 }
