@@ -1,0 +1,19 @@
+#!/bin/bash
+
+PARTITION=$1
+PUBLIC_DISCOVERY_PORT=7400
+DISCOVERY_LOCATOR=${ADDR}:${PUBLIC_DISCOVERY_PORT}
+
+if [ $# -lt 3 ]; then
+    echo "USAGE:"
+    echo "        CSHeatMap <cooling-period> <in-partition> <out-partition>"
+    exit
+fi
+
+
+java \
+    -cp ./target/scala-2.11/moliere-demo-assembly-0.6.2-SNAPSHOT.jar \
+     dds.demo.shapes.HeatMap \
+     48 64 640 480 $1 $2 $3
+     
+

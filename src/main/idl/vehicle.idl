@@ -1,0 +1,42 @@
+module dds {
+  module demo {
+    module vehicle {
+        struct VehicleStatus {
+            long   vid;
+            // Vehicle Position
+            long   x;
+            long   y;
+            // Vehicle Size
+            long   width;
+            long   height;
+            // Vehicle Motion Vector
+            long dx;
+            long dy;
+        };
+        #pragma keylist VehicleStatus vid
+
+        struct VehicleRegion {
+            long vid;
+            long x;
+            long y;
+            long width;
+            long height;
+        };
+        #pragma keylist VehicleRegion vid
+
+        struct DistanceViolationEvent {
+            long thisVid;
+            long thatVid;
+            float distance;
+        };
+        #pragma keylist DistanceViolationEvent
+
+        struct CollisionEvent {
+            long vid;
+            long otherVid;
+            float distance;
+        };
+        #pragma keylist CollisionEvent
+    };
+  };
+};

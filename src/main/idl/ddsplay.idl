@@ -1,0 +1,73 @@
+module dds {
+    module demo{
+        module play {
+
+            // This is a Singleton in the sytem
+            struct Canvas2D {
+                long width;
+                long height;
+            };
+            #pragma keylist Canvas2D
+
+            struct Coord2D {
+                long x;
+                long y;
+            };
+
+            struct ColorRGB {
+                short red;
+                short green;
+                short blue;
+            };
+
+            // Generic type for describing 2D Shapes such as ovals, circles,
+            // squares and rectangles.
+            struct Shape2D {
+                long sid;
+                long id;
+
+                long width;
+                long height;
+
+                Coord2D coord;
+
+                ColorRGB color;
+            };
+            #pragma keylist Shape2D sid id
+
+            struct Line2D {
+                long sid;
+                long id;
+
+                Coord2D begin;
+                Coord2D end;
+
+                ColorRGB color;
+
+            };
+            #pragma keylist Line2D sid id
+
+            typedef sequence <Coord2D> Coord2DList;
+
+            struct Polygon2D {
+                long sid;
+                long id;
+
+                Coord2DList coordList;
+
+                ColorRGB borderColor;
+             };
+             #pragma keylist Polygon2D sid id
+
+             struct PolygonFill2D {
+                long sid;
+                long id;
+
+                Coord2DList coordList;
+
+                ColorRGB borderColor;
+             };
+             #pragma keylist PolygonFill2D sid id
+         };
+     };
+};

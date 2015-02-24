@@ -1,32 +1,27 @@
-import AssemblyKeys._ // put this at the top of the file
-
-assemblySettings
-
 name		:= "moliere-demo"
 
-version		:= "0.3.0-SNAPSHOT"
+version		:= "0.6.2-SNAPSHOT"
 
 organization 	:= "io.nuvo"
 
 homepage :=  Some(new java.net.URL("http://nuvo.io"))
 
-scalaVersion 	:= "2.11.1"
+scalaVersion 	:= "2.11.5"
 
 resolvers += "nuvo.io maven repo" at "http://nuvo-io.github.com/mvn-repo/snapshots"
 
-resolvers += "Vortex Public Repo" at "https://dl.dropboxusercontent.com/u/19238968/public/mvn-repo/snapshots"
+// This is used to fetch the jar for the DDS implementation (such as OpenSplice Mobile)
 
-resolvers += "Vortex Snapshot Repo" at "https://dl.dropboxusercontent.com/u/19238968/devel/mvn-repo/snapshots"
 
-libraryDependencies += "com.netflix.rxjava" % "rxjava-scala" % "0.16.0"
+// libraryDependencies += "com.prismtech.cafe" % "cafe" % "2.1.0p1-SNAPSHOT"
 
-libraryDependencies += "io.nuvo" % "moliere_2.11" % "0.3.0-SNAPSHOT"
+libraryDependencies += "io.nuvo" % "moliere_2.11" % "0.6.3-SNAPSHOT"
 
-libraryDependencies += "com.prismtech.cafe" % "cafe" % "2.0.0-SNAPSHOT"
+libraryDependencies += "org.omg.dds.types" % "builtin-typelib_2.10" % "4.1.1-SNAPSHOT"
 
-libraryDependencies += "com.acme.chat" % "chat-typelib_2.11" % "0.2.0-SNAPSHOT"
+// libraryDependencies += "com.github.sarxos" % "webcam-capture" % "0.3.10"
 
-libraryDependencies += "io.nuvo" % "ishapes-typelib_2.10" % "2.0.0"
+libraryDependencies += "jline" % "jline" % "2.12"
 
 autoCompilerPlugins := true
 
@@ -40,25 +35,25 @@ scalacOptions += "-feature"
 
 scalacOptions += "-language:postfixOps"
 
-proguardSettings
+// proguardSettings
 
-ProguardKeys.options in Proguard += """
--dontnote
--dontwarn
--ignorewarnings
--dontobfuscate
--dontusemixedcaseclassnames
--dontskipnonpubliclibraryclasses
--keeppackagenames **
--optimizationpasses 3
--optimizations !code/simplification/arithmetic,!field/*,!class/merging/*,!code/allocation/variable
--keep public class org.opensplice.mobile.core.ServiceEnvironmentImpl
--keep public class org.slf4j.ILoggerFactor {
-      *;
-}
--keep  class dds.demo.*Helper {  
-       *; 
-}
-"""
+// ProguardKeys.options in Proguard += """
+// -dontnote
+// -dontwarn
+// -ignorewarnings
+// -dontobfuscate
+// -dontusemixedcaseclassnames
+// -dontskipnonpubliclibraryclasses
+// -keeppackagenames **
+// -optimizationpasses 3
+// -optimizations !code/simplification/arithmetic,!field/*,!class/merging/*,!code/allocation/variable
+// -keep public class org.opensplice.mobile.core.ServiceEnvironmentImpl
+// -keep public class org.slf4j.ILoggerFactor {
+//       *;
+// }
+// -keep  class dds.demo.*Helper {  
+//        *; 
+// }
+// """
 
-ProguardKeys.options in Proguard += ProguardOptions.keepMain("dds.demo.oximeter.Oximeter")
+// ProguardKeys.options in Proguard += ProguardOptions.keepMain("dds.demo.oximeter.Oximeter")

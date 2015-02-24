@@ -1,0 +1,5 @@
+#!/bin/bash
+
+java -Dddsi.network.interfaces=lo0 \
+    -cp ./target/scala-2.11/moliere-demo-assembly-0.6.2-SNAPSHOT.jar \
+     dds.demo.shapes.ShapeDriver $*

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+ADDR=demo-eu.prismtech.com
+
+BASE_PORT=10000
+PORT_OFFSET=${RANDOM}%1000
+LOCAL_PORT=$((BASE_PORT+PORT_OFFSET))
+
+PARTITION=$1
+PUBLIC_DISCOVERY_PORT=7400
+DISCOVERY_LOCATOR=${ADDR}:${PUBLIC_DISCOVERY_PORT}
+
+if [ $# -lt 2 ]; then
+    echo "USAGE:"
+    echo "        CDDSPlay <width> <height>"
+    exit
+fi
+
+
+java \
+    -cp ./target/scala-2.11/moliere-demo-assembly-0.6.2-SNAPSHOT.jar \
+    -Dddsi.network.transport=tcp \
+    -Dddsi.discovery.tcp.peers=${DISCOVERY_LOCATOR} \
+    -Dddsi.discovery.externalNetworkAddresses=none \
+    -Dddsi.discovery.tcp.port=${LOCAL_PORT} \
+    -Dddsi.discovery.externalNetworkAddresses=none \
+    dds.demo.ddsplay.DDSPlay \
+    $*

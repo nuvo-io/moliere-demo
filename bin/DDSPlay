@@ -1,0 +1,3 @@
+#!/bin/bash
+
+java -cp ./target/scala-2.11/moliere-demo-assembly-0.6.2-SNAPSHOT.jar dds.demo.ddsplay.DDSPlay $*

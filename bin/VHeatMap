@@ -1,0 +1,1 @@
+java -cp ./target/scala-2.11/moliere-demo-assembly-0.6.1-SNAPSHOT.jar dds.demo.vehicle.HeatMap 48 64 640 480
