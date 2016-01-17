@@ -46,4 +46,9 @@ class Entities(psub: String, ppub: String) {
     "square" -> squareDW,
     "triangle" -> triangleDw)
 
+  var readerMap = Map (
+    "circle" -> circleDR,
+    "square" -> squareDR,
+    "triangle" -> triangleDR)
+
 }
