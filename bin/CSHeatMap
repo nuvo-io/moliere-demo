@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ADDR=demo-eu.prismtech.com
+ADDR=$1.prismtech.com
 
 BASE_PORT=10000
 PORT_OFFSET=${RANDOM}%1000
@@ -15,21 +15,24 @@ PARTITION=$1
 PUBLIC_DISCOVERY_PORT=7400
 DISCOVERY_LOCATOR=${ADDR}:${PUBLIC_DISCOVERY_PORT}
 
-if [ $# -lt 3 ]; then
+VERSION=-0.6.2-SNAPSHOT
+JAR=`dirname $0`/../target/scala-2.11/moliere-demo-assembly${VERSION}.jar
+
+if [ $# -lt 4 ]; then
     echo "USAGE:"
-    echo "        CSHeatMap <cooling-period> <in-partition> <out-partition>"
+    echo "        CSHeatMap <cloud-instance [demo-lab | demo-eu]> <cooling-period> <in-partition> <out-partition>"
     exit
 fi
 
 
 java \
-    -cp ./target/scala-2.11/moliere-demo-assembly-0.6.2-SNAPSHOT.jar \
+    -cp ${JAR} \
     -Dddsi.network.transport=tcp \
     -Dddsi.discovery.tcp.peers=${DISCOVERY_LOCATOR} \
     -Dddsi.discovery.externalNetworkAddresses=none \
     -Dddsi.discovery.tcp.port=${LOCAL_PORT} \
     -Dddsi.discovery.externalNetworkAddresses=none \
      dds.demo.shapes.HeatMap \
-     48 64 640 480 $1 $2 $3
+     48 64 640 480 $2 $3 $4
      
 

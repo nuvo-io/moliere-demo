@@ -8,12 +8,14 @@ homepage :=  Some(new java.net.URL("http://nuvo.io"))
 
 scalaVersion 	:= "2.11.5"
 
+resolvers += "Vortex Repo" at "https://dl.dropboxusercontent.com/u/19238968/vortex/mvn-repo"
+
 resolvers += "nuvo.io maven repo" at "http://nuvo-io.github.com/mvn-repo/snapshots"
 
 // This is used to fetch the jar for the DDS implementation (such as OpenSplice Mobile)
 
 
-// libraryDependencies += "com.prismtech.cafe" % "cafe" % "2.1.0p1-SNAPSHOT"
+libraryDependencies += "com.prismtech.cafe" % "cafe" % "2.2.1-SNAPSHOT"
 
 libraryDependencies += "io.nuvo" % "moliere_2.11" % "0.6.3-SNAPSHOT"
 

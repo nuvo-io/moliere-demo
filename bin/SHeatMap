@@ -1,18 +1,19 @@
 #!/bin/bash
 
-PARTITION=$1
-PUBLIC_DISCOVERY_PORT=7400
-DISCOVERY_LOCATOR=${ADDR}:${PUBLIC_DISCOVERY_PORT}
+VERSION=-0.6.2-SNAPSHOT
+JAR=`dirname $0`/../target/scala-2.11/moliere-demo-assembly${VERSION}.jar
+
 
 if [ $# -lt 3 ]; then
     echo "USAGE:"
-    echo "        CSHeatMap <cooling-period> <in-partition> <out-partition>"
+    echo "        SHeatMap <cooling-period> <in-partition> <out-partition>"
     exit
 fi
 
 
 java \
-    -cp ./target/scala-2.11/moliere-demo-assembly-0.6.2-SNAPSHOT.jar \
+    -Dddsi.network.interface=en1 \
+    -cp ${JAR} \
      dds.demo.shapes.HeatMap \
      48 64 640 480 $1 $2 $3
      

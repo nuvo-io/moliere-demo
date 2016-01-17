@@ -1,3 +1,8 @@
 #!/bin/bash
 
-java -cp ./target/scala-2.11/moliere-demo-assembly-0.6.2-SNAPSHOT.jar dds.demo.ddsplay.DDSPlay $*
+VERSION=-0.6.2-SNAPSHOT
+JAR=`dirname $0`/../target/scala-2.11/moliere-demo-assembly${VERSION}.jar
+
+java -Dddsi.network.interface=en1 \
+     -cp ${JAR}\
+     dds.demo.ddsplay.DDSPlay $*
