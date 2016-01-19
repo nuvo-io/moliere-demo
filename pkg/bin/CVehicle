@@ -1,0 +1,33 @@
+#!/bin/bash
+
+ADDR=demo-eu.prismtech.com
+
+BASE_PORT=10000
+PORT_OFFSET=${RANDOM}%1000
+RDX=${RANDOM}%2
+RDY=${RANDOM}%2
+DX=$((1+RDX))
+DY=$((1+RDY))
+
+LOCAL_PORT=$((BASE_PORT+PORT_OFFSET))
+
+PARTITION=$1
+PUBLIC_DISCOVERY_PORT=7400
+DISCOVERY_LOCATOR=${ADDR}:${PUBLIC_DISCOVERY_PORT}
+
+if [ $# -lt 1 ]; then
+    echo "USAGE:"
+    echo "        CVehicleDriver <vid> [vid: 0-9]"
+    exit
+fi
+
+
+java \
+    -cp ./target/scala-2.11/moliere-demo-assembly-0.6.1-SNAPSHOT.jar \
+    -Dddsi.network.transport=tcp \
+    -Dddsi.discovery.tcp.peers=${DISCOVERY_LOCATOR} \
+    -Dddsi.discovery.externalNetworkAddresses=none \
+    -Dddsi.discovery.tcp.port=${LOCAL_PORT} \
+    -Dddsi.discovery.externalNetworkAddresses=none \
+     dds.demo.vehicle.Vehicle \
+     $1 50 0 0.11.0 480 ${DX} ${DY}

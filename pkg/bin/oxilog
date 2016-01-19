@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ $# -lt 1 ]; then
+    echo "USAGE:"
+    echo "        ishapes  <deviceID>"
+    exit
+fi
+
+DID=$1
+JAR=./target/scala-2.11/moliere-demo-assembly-0.11.0-SNAPSHOT.jar
+
+java \
+    -Dddsi.network.interface=en1 \
+    -cp ${JAR} \
+    dds.demo.oximeter.OximeterLogger ${DID}

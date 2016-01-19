@@ -18,9 +18,9 @@ class Entities(psub: String, ppub: String) {
   implicit lazy val pub = Publisher(pubQos)
   implicit lazy val sub = Subscriber(subQos)
 
-  lazy val circle = Topic[ShapeType](defaultDomainParticipant, "Circle", "Shape")
-  lazy val square = Topic[ShapeType](defaultDomainParticipant,"Square", "Shape")
-  lazy val triangle = Topic[ShapeType](defaultDomainParticipant,"Triangle", "Shape")
+  lazy val circle = Topic[ShapeType](defaultDomainParticipant, "Circle")
+  lazy val square = Topic[ShapeType](defaultDomainParticipant,"Square")
+  lazy val triangle = Topic[ShapeType](defaultDomainParticipant,"Triangle")
 
   lazy val circleDR = DataReader[ShapeType](circle)
   lazy val squareDR = DataReader[ShapeType](square)
