@@ -18,7 +18,7 @@ libraryDependencies += "com.espertech" % "esper" % "5.3.0"
 
 libraryDependencies += "io.nuvo" % "moliere_2.10" % "0.11.0-SNAPSHOT"
 
-libraryDependencies += "org.omg.dds.types" % "builtin-typelib_2.10" % "11.0.0-SNAPSHOT"
+libraryDependencies += "org.omg.dds.types" % "builtin-typelib_2.10" % "11.0.1-SNAPSHOT"
 
 libraryDependencies += "com.google.code.gson" % "gson" % "2.3.1"
 

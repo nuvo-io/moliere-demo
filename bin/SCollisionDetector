@@ -1,16 +1,16 @@
 #!/bin/bash
 
-
 if [ $# -lt 2 ]; then
     echo "USAGE:"
     echo "        CollisionDetector  <in-partition> <out-partition>"
     exit
 fi
-VERSION=-0.6.2-SNAPSHOT
+
+VERSION=-0.11.0-SNAPSHOT
 JAR=`dirname $0`/../target/scala-2.11/moliere-demo-assembly${VERSION}.jar
 
 java \
-    -Dddsi.network.interface=en1 \
+    -Dddsi.network.interface=en0 \
     -cp ${JAR} \
     dds.demo.shapes.CollisionDetector \
     50 $1 $2

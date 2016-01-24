@@ -12,7 +12,7 @@ fi
 
 
 java \
-    -Dddsi.network.interface=en1 \
+    -Dddsi.network.interface=en0 \
     -cp ${JAR} \
      dds.demo.shapes.HeatMap \
      48 64 640 480 $1 $2 $3

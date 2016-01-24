@@ -3,6 +3,6 @@
 VERSION=-0.11.0-SNAPSHOT
 JAR=`dirname $0`/../target/scala-2.11/moliere-demo-assembly${VERSION}.jar
 
-java -Dddsi.network.interfaces=en1 \
+java -Dddsi.network.interfaces=en0 \
     -cp ${JAR} \
      dds.demo.shapes.ShapeDriver $*

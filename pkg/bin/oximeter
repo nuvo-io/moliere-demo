@@ -23,7 +23,7 @@ JAR=`dirname $0`/../target/scala-2.11/moliere-demo-assembly${VERSION}.jar
 
 
 java \
-    -Dddsi.network.interface=en1 \
+    -Dddsi.network.interface=en0 \
     -Dddsi.network.transport=tcp \
     -Dddsi.discovery.tcp.peers=${DISCOVERY_LOCATOR} \
     -Dddsi.discovery.externalNetworkAddresses=none \

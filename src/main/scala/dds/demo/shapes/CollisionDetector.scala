@@ -1,5 +1,7 @@
 package dds.demo.shapes
 
+import java.util.concurrent.atomic.AtomicLong
+
 import dds._
 import dds.config.DefaultEntities.{defaultDomainParticipant, defaultPolicyFactory}
 import dds.demo.play.Coord2D
@@ -13,7 +15,26 @@ import dds.prelude._
 import org.omg.dds.demo.ShapeType
 import scala.collection.JavaConversions._
 
+import com.vortex.demo._
+import scala.concurrent.future
+import scala.concurrent.ExecutionContext.Implicits.global
+
 object CollisionDetector {
+
+
+  val lcd   = Topic[LCD]("LCD")
+  val lcdDw = DataWriter[LCD](dds.config.DefaultEntities.defaultPub, lcd)
+
+  val led   = Topic[LED]("LED")
+  val ledDw = DataWriter[LED](dds.config.DefaultEntities.defaultPub, led)
+
+  val ledOn = new LED(2, true)
+  val ledOff = new LED(2, false)
+  val ledid: Short   = 2
+  val lcdid: Short   = (0x3e00 | 0x0062).toShort
+  var collisions = new AtomicLong(0)
+  def lcdText(r: Short, c: Short, txt: String): LCD = new LCD(lcdid, r, c, txt)
+
 
   val colorMap = Map(
     "RED" -> new ColorRGB(0xcc, 0x33, 0x33),
@@ -44,7 +65,7 @@ object CollisionDetector {
 
     collisionList.foreach (tuple => {
       if (tuple._1.color != tuple._2.color) {
-
+        ledDw.write(ledOn)
         for (color <- colorMap.get(tuple._1.color)) {
           val of = new Shape2D(tuple._1.color.hashCode,
             100 + tuple._1.color.hashCode,
@@ -52,9 +73,12 @@ object CollisionDetector {
             new Coord2D(tuple._1.x + (tuple._1.shapesize / 2).toInt, tuple._1.y + (tuple._1.shapesize / 2).toInt),
             color)
           dw ! of
+          lcdDw.write(lcdText(0, 0, collisions.incrementAndGet() + " collisions"))
         }
       }
+      ledDw.write(ledOff)
     })
+
   }
 
 
@@ -65,6 +89,7 @@ object CollisionDetector {
       sys.exit(1)
     }
 
+    lcdDw.write(lcdText(0, 0, collisions.get() + " collisions"))
     val minDist = args(0).toInt
     val psub= if (args.length > 1) args(1) else ""
     val ppub = if (args.length > 2) args(2) else psub
